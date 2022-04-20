@@ -42,7 +42,7 @@
     var geojson = new ol.layer.Vector({ // VectorLayer({
       source: new ol.source.Vector({ // VectorSource({
         title: 'multipoints',
-        url: './countries.geojson',
+        url: './Mapping.geojson',
         format: new ol.format.GeoJSON()
       })
     });
@@ -55,8 +55,8 @@
       layers: [osm, mapping],
       target: 'map',
       view: new ol.View({
-        center: [40, 0],
-        zoom: 2
+        center: [0, 76],
+        zoom: 0
       })
     });
 
