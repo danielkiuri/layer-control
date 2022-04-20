@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Simple Map</title>
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script>
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/css/ol.css">
+
+  <!-- layer switcher -->
+  <script src="https://unpkg.com/ol-layerswitcher@3.8.3"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .map {
+      height: 95%;
+      width: 100%;
+    }
+    .layerswitcher {
+
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map" class="map"></div>
+  <script>
+
+    var osm = new ol.layer.Tile({
+      title: 'osm',
+      type: 'base',
+      source: new ol.source.OSM()
+    });
+
+
+    var geojson = new ol.layer.Vector({ // VectorLayer({
+      source: new ol.source.Vector({ // VectorSource({
+        title: 'multipoints',
+        url: './Mapping.geojson',
+        format: new ol.format.GeoJSON()
+      })
+    });
+
+    var mapping = new ol.layer.Group({
+      title: 'multipoints',
+      layers: [geojson]
+    })
+    const map = new ol.Map({
+      layers: [osm, mapping],
+      target: 'map',
+      view: new ol.View({
+        center: [40, 0],
+        zoom: 2
+      })
+    });
+
+    const layerSwitcher = new LayerSwitcher({
+      GroupSelectStyle: "group"
+    });
+    map.addControl(layerSwitcher);
+  </script>
+</body>
+
+</html>
