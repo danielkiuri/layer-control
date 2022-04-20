@@ -30,9 +30,8 @@
 
 <body>
   <div id="map" class="map"></div>
-  <script type="module">
-    import {useGeographic} from './ol/proj';
-    useGeographic();
+  <script>
+    
     var osm = new ol.layer.Tile({
       title: 'osm',
       type: 'base',
@@ -56,8 +55,8 @@
       layers: [osm, mapping],
       target: 'map',
       view: new ol.View({
-        center: [0, 76],
-        zoom: 0
+        center: [0, 0],
+        zoom: 1
       })
     });
 
